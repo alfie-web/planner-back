@@ -5,10 +5,27 @@ const schema = new Schema({
 		type: String,
 		required: true
 	},
-	date: {
-		type: Date,
+	day: {
+		type: Number,
 		required: true
 	},
+	month: {
+		type: Number,
+		required: true
+	},
+	year: {
+		type: Number,
+		required: true
+	},
+	time: {
+		type: String,
+		required: true
+	},
+
+	// date: {
+	// 	type: Date,
+	// 	required: true
+	// },
 	// tasks: [{
 	// 	type: Schema.Types.ObjectId,
 	// 	ref: 'Task'

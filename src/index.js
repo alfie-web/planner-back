@@ -1,18 +1,20 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const cors = require('cors');
 
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
-
-// const { Task } = require('./models');
 
 require('dotenv').config();
 
 const connectDB = require('./core/db');
 
-
-
 const app = express();
+
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials: true
+}))
 
 connectDB(app);
 

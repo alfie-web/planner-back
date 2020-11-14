@@ -5,7 +5,10 @@ const typeDefs = gql`
 	type TimeMark {
 		_id: ID!
 		title: String!
-		date: String!
+		day: Int!
+		month: Int!
+		year: Int!
+		time: String!
 	}
 
 	type Task {
@@ -15,7 +18,14 @@ const typeDefs = gql`
 		timeMark: TimeMark!
 	}
 	      
+	type TimeMarksCount {
+		day: Int!
+		count: Int!
+	}
+
 	type Query {
+		monthTimeMarks(month: Int, year: Int): [TimeMarksCount]
+		timeMarks(day: Int, month: Int, year: Int): [TimeMark]
 		tasks(timemarkId: ID): [Task]
 	}
 `;
