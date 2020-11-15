@@ -28,7 +28,12 @@ const typeDefs = gql`
 		monthTimeMarks(month: Int, year: Int): [TimeMarksCount]
 		timeMarks(day: Int, month: Int, year: Int): [TimeMark]
 		tasks(timemarkId: ID): [Task]
-		completeTask(taskId: ID, completed: Boolean): Task
+		# completeTask(taskId: ID, completed: Boolean): Task
+		
+	}
+
+	type Mutation {
+		completeTask(taskId: ID): Task
 	}
 `;
 

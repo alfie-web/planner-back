@@ -9,11 +9,6 @@ const resolvers = {
 			return Task.find({ timeMark: args.timemarkId}).sort({ createdAt: 1 })
 		},
 
-		completeTask(parent, { taskId, completed }) {
-			return Task.findOneAndUpdate({ _id: taskId }, { completed })
-		},
-
-
 
 		monthTimeMarks(parent, { month, year }) {
 			console.log(month, year)
@@ -31,6 +26,15 @@ const resolvers = {
 
 
 	},
+	Mutation: {
+		completeTask(parent, { taskId }) {
+			return Task.findOne({ _id: taskId }).then(findedTask => {
+				findedTask.completed = !findedTask.completed
+				return findedTask.save()
+			})
+			// return Task.findOneAndUpdate({ _id: taskId }, { completed })
+		},
+	}
 };
 
 module.exports = resolvers;
