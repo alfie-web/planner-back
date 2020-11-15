@@ -6,8 +6,14 @@ const countTimeMarksInDay = require('../helpers/countTimeMarksInDay');
 const resolvers = {
 	Query: {
 		tasks(parent, args) {
-			return Task.find({ timeMark: args.timemarkId})
+			return Task.find({ timeMark: args.timemarkId}).sort({ createdAt: 1 })
 		},
+
+		completeTask(parent, { taskId, completed }) {
+			return Task.findOneAndUpdate({ _id: taskId }, { completed })
+		},
+
+
 
 		monthTimeMarks(parent, { month, year }) {
 			console.log(month, year)

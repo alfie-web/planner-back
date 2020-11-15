@@ -21,6 +21,11 @@ const schema = new Schema({
 		type: String,
 		required: true
 	},
+	tasksCount: {
+		type: Number,
+		required: true,
+		default: 0
+	},
 
 	// date: {
 	// 	type: Date,

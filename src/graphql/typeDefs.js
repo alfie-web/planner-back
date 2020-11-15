@@ -9,6 +9,7 @@ const typeDefs = gql`
 		month: Int!
 		year: Int!
 		time: String!
+		tasksCount: Int!
 	}
 
 	type Task {
@@ -27,6 +28,7 @@ const typeDefs = gql`
 		monthTimeMarks(month: Int, year: Int): [TimeMarksCount]
 		timeMarks(day: Int, month: Int, year: Int): [TimeMark]
 		tasks(timemarkId: ID): [Task]
+		completeTask(taskId: ID, completed: Boolean): Task
 	}
 `;
 
