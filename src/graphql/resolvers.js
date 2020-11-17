@@ -27,9 +27,38 @@ const resolvers = {
 
 	},
 	Mutation: {
+		addTask: async (parent, { title, timeMark }) => {
+			const findedTimeMark = await TimeMark.findOne({ _id: timeMark })
+
+			if (findedTimeMark) {
+				const newTask = new Task({ title, timeMark });
+
+				findedTimeMark.tasksCount += 1;
+				await findedTimeMark.save()
+
+				return newTask.save()
+			}
+
+			// TimeMark.findOne({ _id: timeMark }).exec()
+			// 	.then(findedTimeMark => {
+			// 		const newTask = new Task({ title, timeMark });
+			// 		findedTimeMark.tasksCount += 1;
+			// 		findedTimeMark.save()
+			// 		return newTask.save()
+			// 	})
+		},	
+
 		completeTask(parent, { taskId }) {
 			return Task.findOne({ _id: taskId }).then(findedTask => {
 				findedTask.completed = !findedTask.completed
+				return findedTask.save()
+			})
+			// return Task.findOneAndUpdate({ _id: taskId }, { completed })
+		},
+
+		updateTask(parent, { taskId, title }) {
+			return Task.findOne({ _id: taskId }).then(findedTask => {
+				findedTask.title = title
 				return findedTask.save()
 			})
 			// return Task.findOneAndUpdate({ _id: taskId }, { completed })

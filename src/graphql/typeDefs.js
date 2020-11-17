@@ -33,7 +33,9 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
+		addTask(title: String, timeMark: ID): Task
 		completeTask(taskId: ID): Task
+		updateTask(taskId: ID, title: String): Task
 	}
 `;
 
