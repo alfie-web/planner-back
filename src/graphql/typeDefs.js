@@ -27,7 +27,9 @@ const typeDefs = gql`
 	type Query {
 		monthTimeMarks(month: Int, year: Int): [TimeMarksCount]
 		timeMarks(day: Int, month: Int, year: Int): [TimeMark]
+		timeMarkById(_id: ID): TimeMark
 		tasks(timemarkId: ID): [Task]
+		taskById(_id: ID): Task
 		# completeTask(taskId: ID, completed: Boolean): Task
 		
 	}

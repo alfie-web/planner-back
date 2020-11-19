@@ -9,6 +9,10 @@ const resolvers = {
 			return Task.find({ timeMark: args.timemarkId}).sort({ createdAt: 1 })
 		},
 
+		taskById(parent, { _id }) {
+			return Task.findById(_id);
+		},
+
 
 		monthTimeMarks(parent, { month, year }) {
 			console.log(month, year)
@@ -22,9 +26,11 @@ const resolvers = {
 
 		timeMarks(parent, { day, month, year }) {
 			return TimeMark.find({ day, month, year })
+		},
+
+		timeMarkById(parent, { _id }) {
+			return TimeMark.findById(_id)
 		}
-
-
 	},
 	Mutation: {
 		addTask: async (parent, { title, timeMark }) => {
