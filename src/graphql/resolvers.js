@@ -37,7 +37,7 @@ const resolvers = {
 			const findedTimeMark = await TimeMark.findOne({ _id: timeMark })
 
 			if (findedTimeMark) {
-				const newTask = new Task({ title, timeMark });
+				const newTask = new Task({ title, timeMark })
 
 				findedTimeMark.tasksCount += 1;
 				await findedTimeMark.save()
@@ -66,6 +66,17 @@ const resolvers = {
 			return Task.findOne({ _id: taskId }).then(findedTask => {
 				findedTask.title = title
 				return findedTask.save()
+			})
+			// return Task.findOneAndUpdate({ _id: taskId }, { completed })
+		},
+
+
+
+		updateTimeMark(parent, { timeMarkId, title, time }) {
+			return TimeMark.findOne({ _id: timeMarkId }).then(findedTimeMark => {
+				findedTimeMark.title = title
+				findedTimeMark.time = time
+				return findedTimeMark.save()
 			})
 			// return Task.findOneAndUpdate({ _id: taskId }, { completed })
 		},

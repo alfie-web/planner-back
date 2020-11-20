@@ -38,6 +38,8 @@ const typeDefs = gql`
 		addTask(title: String, timeMark: ID): Task
 		completeTask(taskId: ID): Task
 		updateTask(taskId: ID, title: String): Task
+
+		updateTimeMark(timeMarkId: ID, title: String, time: String): TimeMark
 	}
 `;
 
